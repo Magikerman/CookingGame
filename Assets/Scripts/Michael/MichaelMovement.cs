@@ -7,7 +7,7 @@ public class MichaelMovement : MonoBehaviour
 {
     private float horizontal;
     private float vertical;
-
+    [SerializeField] private LayerMask rayIgnore;
     [SerializeField] private float speed;
 
     [SerializeField] private Transform orientation;
@@ -80,7 +80,7 @@ public class MichaelMovement : MonoBehaviour
 
         RaycastHit hit = default;
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        Physics.Raycast(ray, out hit, grabRange);
+        Physics.Raycast(ray, out hit, grabRange, ~rayIgnore);
 
         if (Input.GetAxisRaw("Fire1") == 1)
         {

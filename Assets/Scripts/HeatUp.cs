@@ -10,4 +10,13 @@ public class HeatUp : MonoBehaviour
             food.heatUp();
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var food = other.gameObject.GetComponent<Food>();
+        if (food != null)
+        {
+            food.Cooking = false;
+        }
+    }
 }

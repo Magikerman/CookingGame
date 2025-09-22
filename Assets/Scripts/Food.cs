@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Food : MonoBehaviour
 {
     [SerializeField] private Renderer Renderer;
+    [SerializeField] private GameObject particle;
+    private bool cooking;
+    public bool Cooking { get { return cooking; } set { cooking = value; } }
 
     public enum foodType { GlutenFreeBones, BreadB, BreadT, Meat, Cheese, FrenchFry }
     [SerializeField] private foodType type;
@@ -18,6 +22,9 @@ public class Food : MonoBehaviour
     private Color cookedColor;
     private Color burntColor;
 
+    public foodType Type => type;
+    public cookLevel CookedLevel => cookedLevel;
+
     private void Start()
     {
         rawColor = Renderer.material.color;
@@ -27,9 +34,15 @@ public class Food : MonoBehaviour
         etherealTime = timeToCook * 10;
     }
 
+    private void FixedUpdate()
+    {
+        particle.SetActive(cooking);
+    }
+
     public virtual void heatUp()
     {
         heatingProgress -= Time.deltaTime;
+        cooking = true;
 
         if (heatingProgress <= 0 && cookedLevel != cookLevel.Ethereal)
         {

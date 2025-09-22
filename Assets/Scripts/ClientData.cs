@@ -8,7 +8,7 @@ public class ClientData : MonoBehaviour
     [SerializeField] private Sprite sprite;
     [SerializeField] private string clientName;
     [SerializeField] private float voiceSpeed;
-    [SerializeField] private List<string> order;
+    [SerializeField] private List<FoodNode> order;
     [TextArea]
     [SerializeField] private List<string> dialogue;
     [SerializeField] private GameObject blood;
@@ -21,6 +21,11 @@ public class ClientData : MonoBehaviour
     //temp
     private void Start()
     {
+        TellOrderToTheManager();
+        foreach(var food in order)
+        {
+            dialogue.Add(food.CookLevel + " " + food.FoodType);
+        }
         TextManager.Instance.SetClient(this);
     }
 
@@ -33,5 +38,10 @@ public class ClientData : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Grab")) { Die(); }
+    }
+
+    private void TellOrderToTheManager()
+    {
+        FoodCompareManager.manager.SetClientOrder(order);
     }
 }

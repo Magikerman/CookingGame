@@ -33,11 +33,6 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void SetClient(ClientData client)
     {
         this.client = client;
