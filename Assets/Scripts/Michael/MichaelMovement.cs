@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -14,7 +15,8 @@ public class MichaelMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     private Vector3 moveDirection;
-
+    [SerializeField] private float points;
+    [SerializeField] private TextMeshProUGUI pointsText;
     
     [SerializeField] private bool isGrounded;
     [Header("Ground Stuff")]
@@ -71,6 +73,8 @@ public class MichaelMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
+        pointsText.text = "Puntos: " + points;
     }
 
     private void MyInput()
@@ -182,5 +186,10 @@ public class MichaelMovement : MonoBehaviour
             grabbedObjectCollider.enabled = false;
             Destroy(thingGrabbed.GetComponent<Rigidbody>());
         }
+    }
+
+    public void AddPoints(float value)
+    {
+        points += value;
     }
 }

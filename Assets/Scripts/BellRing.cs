@@ -17,7 +17,11 @@ public class BellRing : MonoBehaviour , ITouchable
         else
         {    
             var mistakes = FoodCompareManager.manager.CompareFood(foodList);
-            Debug.Log(mistakes.Count);
+            var points = 50f;
+
+            points -= mistakes.Count * 10;
+
+            player.GetComponent<MichaelMovement>().AddPoints(points);
         }
     }
 
