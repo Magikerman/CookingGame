@@ -1,7 +1,9 @@
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MichaelMovement : MonoBehaviour
@@ -191,5 +193,11 @@ public class MichaelMovement : MonoBehaviour
     public void AddPoints(float value)
     {
         points += value;
+
+        //temp for tuto
+        if (points >= 50)
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

@@ -37,10 +37,10 @@ public class FoodCompareManager : MonoBehaviour
             bool check = false;
             foreach (Food food in givenList)
             {
-                Debug.Log("Type: " + food.Type + ", Heat: " + food.CookedLevel);
                 if (food.Type == node.FoodType && food.CookedLevel == node.CookLevel)
                 {
                     givenList.Remove(food);
+                    food.Delete();
                     check = true;
                     break;
                 }

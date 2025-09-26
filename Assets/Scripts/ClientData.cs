@@ -26,7 +26,7 @@ public class ClientData : MonoBehaviour
         {
             dialogue.Add(food.CookLevel + " " + food.FoodType);
         }
-        TextManager.Instance.SetClient(this);
+        SetAsTextManagerCurrentClient();
     }
 
     public void Die()
@@ -35,6 +35,7 @@ public class ClientData : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //temp
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Grab")) { Die(); }
@@ -43,5 +44,10 @@ public class ClientData : MonoBehaviour
     private void TellOrderToTheManager()
     {
         FoodCompareManager.manager.SetClientOrder(order);
+    }
+
+    private void SetAsTextManagerCurrentClient()
+    {
+        TextManager.Instance.SetClient(this);
     }
 }

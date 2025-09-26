@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class BellRing : MonoBehaviour , ITouchable
 {
-    [SerializeField] private bool objectNeeded;
-    public bool ObjectNeeded { get { return objectNeeded; } }
     private List<Food> foodList = new List<Food>();
 
     public void Interact(GameObject player)
